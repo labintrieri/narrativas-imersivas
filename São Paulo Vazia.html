@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      São Paulo Vazia: os prédios abandonados que poderiam abrigar quem vive nas
+      ruas
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --text-color: #2c3e50;
+        --background: #ffffff;
+        --accent: #e74c3c;
+        --secondary: #ecf0f1;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Source Sans 3", sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background: var(--background);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("primeira-imagem.jpg") center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+      }
+
+      .title {
+        font-family: "Playfair Display", serif;
+        font-size: 3.5rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+      }
+    
+
+      .subtitle {
+        font-size: 1.5rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .intro {
+        padding: 4rem 0;
+        font-size: 1.25rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .highlight-box {
+        background: var(--secondary);
+        padding: 2rem;
+        margin: 2rem 0;
+        border-left: 4px solid var(--accent);
+      }
+
+      .building-card {
+        margin: 4rem 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background: white;
+      }
+
+      .building-image {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+      }
+
+      .building-info {
+        padding: 2rem;
+      }
+
+      .building-address {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .ai-analysis {
+        background: var(--secondary);
+        padding: 1.5rem;
+        margin-top: 1rem;
+        border-radius: 4px;
+      }
+
+      .ai-analysis h3 {
+        color: var(--accent);
+        margin-bottom: 1rem;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--accent);
+        font-family: "Playfair Display", serif;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+        color: white;
+        font-size: 2rem;
+      }
+
+      .map-section {
+        padding: 4rem 0;
+        background-color: var(--secondary);
+        margin: 2rem 0;
+      }
+
+      .map-container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+        overflow: hidden;
+        margin: 2rem 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .map-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      .map-title {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .map-description {
+        max-width: 800px;
+        margin: 0 auto 2rem;
+        text-align: center;
+        font-size: 1.1rem;
+      }
+
+      .capacity-highlight {
+        font-size: 1.25rem;
+        color: var(--accent);
+        font-weight: bold;
+        margin: 1rem 0;
+      }
+
+      @media (max-width: 768px) {
+        .title {
+          font-size: 2.5rem;
+        }
+
+        .subtitle {
+          font-size: 1.2rem;
+        }
+
+        .building-image {
+          height: 300px;
+        }
+
+        .map-container {
+          padding-bottom: 75%;
+        }
+
+        .map-title {
+          font-size: 1.5rem;
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-30px);
+        }
+        60% {
+          transform: translateY(-15px);
+        }
+      }
+
+      .ideia {
+        padding: 0rem 0; /* Reduzido o padding superior para 0rem */
+        font-size: 1.25rem;
+        max-width: 800px;
+        margin-top: -6rem; /* Aumentei o valor negativo para empurrar a seção mais para cima */
+        margin: 0 auto;
+      }
+
+      .ideia h2 {
+        font-size: 2rem;
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      .ideia p {
+        font-size: 1.25rem;
+        line-height: 1.8;
+        margin-bottom: 15px;
+      }
+
+      .ideia strong {
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      @media (max-width: 768px) {
+        .ideia {
+          padding: 0 15px; /* Ajustei o padding superior para 0rem em telas menores */
+          margin-top: -4rem; /* Ajuste mais suave para telas pequenas */
+        }
+
+        .ideia h2 {
+          font-size: 1.8rem;
+        }
+
+        .ideia p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="title">
+          São Paulo Vazia: os prédios abandonados que poderiam abrigar quem vive
+          nas ruas
+        </h1>
+        <p class="subtitle">
+          Em uma cidade com mais de 588 mil imóveis desocupados, projeto usa
+          inteligência artificial para calcular quantas pessoas em situação de
+          rua poderiam ser acolhidas em prédios abandonados
+        </p>
+        <div class="scroll-indicator">↓</div>
+      </div>
+    </header>
+  
+    <main class="container">
+      <section class="intro">
+        <p>
+          São Paulo vive um paradoxo: enquanto mais de 80 mil pessoas dormem nas
+          ruas, cerca de 588 mil imóveis permanecem vazios na cidade. O número
+          de domicílios desocupados é aproximadamente sete vezes maior que a
+          população em situação de rua.
+        </p>
+  
+        <div class="highlight-box">
+          <div class="stat-number">80.369</div>
+          <p>
+            pessoas vivem em situação de rua na capital paulista, segundo
+            levantamento do Observatório Brasileiro de Políticas Públicas com a
+            População em Situação de Rua (OBPopRua)
+          </p>
+        </div>
+  
+        <p>
+          Um estudo encomendado pela Associação Brasileira de Incorporadoras
+          Imobiliárias (Abrainc) revelou que a cidade mais rica do país enfrenta
+          um déficit habitacional de 625 mil domicílios. Esse número inclui
+          moradias inadequadas, situações precárias, coabitação familiar e ônus
+          excessivo com aluguel.
+        </p>
+      </section>
+  
+      <section class="ideia">
+        <h2>Proposta</h2>
+        <p>
+          Para que o problema da moradia na capital paulista deixe de ser
+          tratado apenas como uma estatística, a proposta é criar uma
+          experiência imersiva na qual o usuário poderá identificar, em um mapa
+          interativo da cidade, imóveis desocupados notificados pela Prefeitura
+          de São Paulo. Em um cenário ideal, esses imóveis poderiam ser
+          destinados ao acolhimento de pessoas em situação de rua.
+        </p>
+        <p>
+          O objetivo é que, ao clicar nos endereços de imóveis notificados por
+          descumprirem a função social da propriedade, o usuário visualize uma
+          imagem real do imóvel, além de informações complementares, como uma
+          estimativa gerada por inteligência artificial sobre a quantidade de
+          pessoas que poderiam ser acomodadas naquele espaço.
+        </p>
+      </section>
+  
+      <section class="map-section">
+        <div class="container">
+          <h2 class="map-title">Mapeamento dos Imóveis Abandonados</h2>
+          <p class="map-description">
+            Localização dos prédios abandonados em São Paulo que foram
+            analisados neste projeto. Cada ponto representa um imóvel que
+            poderia ser transformado em moradia.
+          </p>
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/d/u/0/embed?mid=16hBlWehvTAVI4cfooOgQlwRf3B4YD-M&ehbc=2E312F"
+              width="640"
+              height="480"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+  
+      <section class="ideia">
+        <h2>Como a ideia foi implementada</h2>
+        <p>
+          A Prefeitura de São Paulo notifica os proprietários de imóveis não
+          edificados, subutilizados ou não utilizados que não cumprem a função
+          social da propriedade.
+        </p>
+  
+        <p>
+          <strong>Imóveis não utilizados</strong> são aqueles que, embora
+          possuam edificação que atende ao coeficiente mínimo exigido, têm pelo
+          menos 60% de sua área construída desocupada por mais de um ano.
+        </p>
+  
+        <p>
+          Para esta proposta de experiência imersiva, consideramos apenas os
+          endereços de imóveis não utilizados, extraídos de uma base de dados de
+          imóveis notificados pela prefeitura por descumprimento da função
+          social da propriedade.
+        </p>
+  
+        <p>
+          De acordo com as regras da Prefeitura de SP, os proprietários de
+          imóveis não utilizados têm um ano para ocupar o imóvel após receberem
+          a notificação. Se não cumprirem o prazo, é aplicado o IPTU Progressivo
+          no Tempo, o que significa que o valor do imposto vai
+          <strong>
+            aumentar todo ano, por 5 anos, até atingir no máximo 15%
+          </strong>. A cada ano, o aumento será o dobro do ano anterior, mas nunca
+          passará de 15%. Após 5 anos de cobrança, a prefeitura pode realizar a
+          desapropriação de imóveis, com pagamento em títulos da dívida pública.
+        </p>
+  
+        <p>
+          A desapropriação de imóveis que não cumprem a função social, mesmo
+          após a notificação e a cobrança do IPTU progressivo, foi estabelecida
+          no Plano Diretor de 2014. No entanto, até este ano, essa medida ainda
+          não havia sido colocada em prática.
+        </p>
+  
+        <p>
+          Em junho deste ano, a Prefeitura de São Paulo anunciou que vai
+          <a
+            href="https://imprensa.prefeitura.sp.gov.br/noticia/prefeitura-vai-desapropriar-e-transformar-em-habitacao-popular-imoveis-que-nao-cumpriram-a-funcao-social-no-centro"
+          >
+            desapropriar cinco prédios ociosos no centro da cidade
+          </a>
+          , que não cumprem a função social, para transformá-los em habitação
+          popular. Foi a primeira vez que um decreto foi assinado para
+          desapropriar imóveis no centro de São Paulo.
+        </p>
+      </section>
+  
+      <section class="ideia">
+        <h2>Uso de IA</h2>
+        <p>
+          Usamos a API do Google Maps para levantar de forma automatizada imagens de mais de 200 endereços cadastrados.
+          Os dados passaram por uma escolha editorial e nove endereços foram selecionados para compor a apresentação final.
+          As imagens dessas localidades foram analisadas pelo modelo de IA Claude 3 Opus via API da Anthropic. Usamos o seguinte prompt:
+        </p>
+  
+        <p>
+          """Analise esta imagem e me dê uma estimativa fundamentada de quantas pessoas em situação de rua poderiam ser abrigadas neste imóvel abandonado.
+          </p>
+          <p>Considere:</p>
+          <ul>
+            <li>Área total aproximada e número de andares</li>
+            <li>Necessidade de reparos ou adaptações básicas</li>
+            <li>Espaço para dormitórios e áreas comuns</li>
+            <li>Questões de segurança e habitabilidade</li>
+          </ul>
+          <p>Por favor, estruture sua resposta em:</p>
+          <ul>
+            <li>Identificação do imóvel abandonado</li>
+            <li>Análise estrutural</li>
+            <li>Considerações de segurança</li>
+            <li>Recomendações básicas</li>
+          </ul>
+          """
+        </p>
+        <br>
+        <p>
+          A tecnologia tornou possível uma análise extensa e trabalhosa. Em contrapartida, tivemos que tomar cuidado com vieses e submeter os resultados para validação humana.
+          Um aprendizado adicional foi ponderar como usar as APIs de acordo com o orçamento possível: calcular tamanho do projeto, características dos inputs e outputs da IA, modelo utilizado etc.
+        </p>
+      </section>
+  
+      <section class="buildings">
+        <div class="building-card">
+          <img src="fotos/alameda-ribeiro-da-silva-910.jpeg" alt="Imagem do imóvel">
+          <div class="building-info">
+            <h2 class="building-address">Alameda Ribeiro da Silva, 910</h2>
+            <p>
+              Prédio de três andares localizado na região central de São Paulo,
+              atualmente sem uso.
+            </p>
+            <div class="ai-analysis">
+              <h3>Análise da Inteligência Artificial</h3>
+              <p class="capacity-highlight">Capacidade estimada: 50 a 80 pessoas</p>
+              <p>
+                O imóvel possui área total estimada de mais de 1000 m² e estrutura de
+                concreto em condições razoáveis. Com adaptações adequadas, poderia
+                abrigar dezenas de pessoas em situação de vulnerabilidade.
+              </p>
+              <p>Necessidades principais:</p>
+              <ul>
+                <li>Inspeção e reparos estruturais</li>
+                <li>Adaptação para dormitórios e áreas comuns</li>
+                <li>Instalação de sistemas de segurança</li>
+                <li>Reforma de instalações elétricas e hidráulicas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Card: Barão de Iguape, 360 -->
+      <div class="building-card">
+        <img
+          src="fotos/barao-de-iguape-360.jpeg"
+          alt="Prédio na Barão de Iguape, 360"
+          class="building-image"
+        />
+        <div class="building-info">
+          <h2 class="building-address">Barão de Iguape, 360</h2>
+          <p>
+            Prédio de 8 andares localizado na Rua Barão de Iguape, 360, em São Paulo, aparentemente abandonado.
+          </p>
+          <div class="ai-analysis">
+            <h3>Análise da Inteligência Artificial</h3>
+            <p class="capacity-highlight">Capacidade estimada: 100 a 200 pessoas</p>
+            <p>
+              1. <strong>Identificação do imóvel abandonado:</strong><br>
+              Prédio de 8 andares, fachada deteriorada, aparenta abandono.
+            </p>
+            <p>
+              2. <strong>Análise estrutural:</strong><br>
+              Estrutura de concreto armado, necessitando vistoria técnica interna. Aparência externa degradada.
+            </p>
+            <p>
+              3. <strong>Capacidade estimada:</strong><br>
+              De 100 a 200 pessoas, considerando dormitórios coletivos, banheiros, cozinha e áreas de convivência.
+            </p>
+            <p>
+              4. <strong>Considerações de segurança:</strong><br>
+              Avaliação completa da estrutura, instalações elétricas e hidráulicas. Adequação às normas de segurança, rotas de fuga, extintores e acessibilidade.
+            </p>
+            <p>
+              5. <strong>Recomendações básicas:</strong><br>
+              Reformas estruturais, instalação de dormitórios, áreas comuns e serviços de assistência social. Projeto conduzido por engenheiros, arquitetos e entidades assistenciais.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Henrique Schauman, 215 -->
+      <div class="building-card">
+        <img
+          src="fotos/henrique-schauman-215.jpeg"
+          alt="Prédio na Henrique Schauman, 215"
+          class="building-image"
+        />
+        <div class="building-info">
+          <h2 class="building-address">Henrique Schauman, 215</h2>
+          <p>
+            Prédio de 3 andares localizado na Rua Henrique Schauman, 215, aparentemente em mau estado de conservação.
+          </p>
+          <div class="ai-analysis">
+            <h3>Análise da Inteligência Artificial</h3>
+            <p class="capacity-highlight">Capacidade estimada: 20 a 30 pessoas</p>
+          
+            <p>
+              1. <strong>Identificação do imóvel abandonado:</strong><br>
+              Prédio com 3 andares, abandonado, fachada com infiltrações e vidros quebrados.
+            </p>
+            <p>
+              2. <strong>Análise estrutural:</strong><br>
+              Sinais de deterioração. Necessária vistoria interna para avaliar estrutura, elétrica e hidráulica. Reparos extensivos prováveis.
+            </p>
+            <p>
+              3. <strong>Capacidade estimada:</strong><br>
+              Entre 20 a 30 pessoas, considerando criação de dormitórios coletivos e áreas comuns.
+            </p>
+            <p>
+              4. <strong>Considerações de segurança:</strong><br>
+              Avaliação de rotas de fuga, proteção contra incêndio e acessibilidade. Segurança do entorno também é importante.
+            </p>
+            <p>
+              5. <strong>Recomendações básicas:</strong><br>
+              Vistoria técnica, reparos estruturais, adequação do imóvel, criação de espaços de convivência. Gestão capacitada e recursos contínuos necessários.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Líbero Badaró, 583 -->
+      <div class="building-card">
+        <img
+          src="fotos/libero-badaro-583.jpeg"
+          alt="Prédio na Líbero Badaró, 583"
+          class="building-image"
+        />
+        <div class="building-info">
+          <h2 class="building-address">Líbero Badaró, 583</h2>
+          <p>
+            Prédio comercial de múltiplos andares na Rua Líbero Badaró, 583, aparentemente abandonado.
+          </p>
+          <div class="ai-analysis">
+            <h3>Análise da Inteligência Artificial</h3>
+      
+            <p class="capacity-highlight">Capacidade estimada: 200 a 250 pessoas</p>
+            <p>
+              1. <strong>Identificação do imóvel abandonado:</strong><br>
+              Prédio com pelo menos 6 andares, deteriorado externamente, sem manutenção.
+            </p>
+            <p>
+              2. <strong>Análise estrutural:</strong><br>
+              Estrutura parece íntegra. Fachada pichada, janelas quebradas, mas sem danos estruturais aparentes.
+            </p>
+            <p>
+              3. <strong>Capacidade estimada:</strong><br>
+              Entre 200 a 250 pessoas, considerando cerca de 1800m² de área útil.
+            </p>
+            <p>
+              4. <strong>Considerações de segurança:</strong><br>
+              Avaliar escadas, elevadores, instalações elétricas, hidráulicas, rotas de fuga e prevenção de incêndio.
+            </p>
+            <p>
+              5. <strong>Recomendações básicas:</strong><br>
+              Adaptações para dormitórios, banheiros, cozinha, refeitório e áreas comuns. Cumprir normas de segurança e acessibilidade. Parcerias com organizações sociais recomendadas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Prestes Maia, 913 -->
+      <div class="building-card">
+        <img
+          src="fotos/prestes-maia-913.jpeg"
+          alt="Prédio na Prestes Maia, 913"
+          class="building-image"
+        />
+        <div class="building-info">
+          <h2 class="building-address">Prestes Maia, 913</h2>
+          <p>
+            Prédio de múltiplos andares na Rua Prestes Maia, 913, com aparência de abandono e deterioração.
+          </p>
+          <div class="ai-analysis">
+            <h3>Análise da Inteligência Artificial</h3>
+            
+            <p class="capacity-highlight">Capacidade estimada: 100 a 150 pessoas</p>
+            <p>
+              1. <strong>Identificação do imóvel abandonado:</strong><br>
+              Prédio com cerca de 10 andares, fachada desgastada.
+            </p>
+            <p>
+              2. <strong>Análise estrutural:</strong><br>
+              Estrutura possivelmente íntegra, porém sem garantia. Inspeções detalhadas necessárias.
+            </p>
+            <p>
+              3. <strong>Capacidade estimada:</strong><br>
+              Entre 100 a 150 pessoas, considerando áreas para dormitórios, banheiros, cozinha e áreas comuns.
+            </p>
+            <p>
+              4. <strong>Considerações de segurança:</strong><br>
+              Avaliação estrutural, elétrica, hidráulica, prevenção de incêndio e acessibilidade são fundamentais.
+            </p>
+            <p>
+              5. <strong>Recomendações básicas:</strong><br>
+              Reformas, reparos, adequações de segurança, criação de dormitórios, gestão do espaço por equipe especializada, envolvimento de profissionais capacitados.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Quirino de Andrade, 45 -->
+      <div class="building-card">
+        <img
+          src="fotos/quirino-de-andrade-45.jpeg"
+          alt="Prédio na Quirino de Andrade, 45"
+          class="building-image"
+        />
+        <div class="building-info">
+          <h2 class="building-address">Quirino de Andrade, 45</h2>
+          <p>
+            Prédio alto com cerca de 20 andares na Rua Quirino de Andrade, 45, aparentemente abandonado.
+          </p>
+          <div class="ai-analysis">
+            <h3>Análise da Inteligência Artificial</h3>
+            
+            <p class="capacity-highlight">Capacidade estimada: 300 a 600 pessoas (dependendo da área por pessoa)</p>
+            <p>
+              1. <strong>Identificação do imóvel abandonado:</strong><br>
+              Prédio de cerca de 20 andares, fachada deteriorada e pichada.
+            </p>
+            <p>
+              2. <strong>Análise estrutural:</strong><br>
+              Estrutura de concreto aparentemente íntegra, mas fachadas e esquadrias deterioradas.
+            </p>
+            <p>
+              3. <strong>Capacidade estimada:</strong><br>
+              Entre 300 a 600 pessoas, conforme o espaço por pessoa (10 a 20m²/hab).
+            </p>
+            <p>
+              4. <strong>Considerações de segurança:</strong><br>
+              Avaliação completa, rotas de fuga, elevadores, instalações, proteção contra incêndio.
+            </p>
+            <p>
+              5. <strong>Recomendações básicas:</strong><br>
+              Limpeza, reparos, adequações estruturais, criação de dormitórios, áreas de convivência e serviços de assistência. Projeto técnico especializado necessário.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Roberto Simosen, 22 -->
+      <div class="building-card">
+        <img
+          src="fotos/roberto-simosen-22.jpeg"
+          alt="Prédio na Roberto Simosen, 22"
+          class="building-image"
+        />
+        <div class="building-info">
+          <h2 class="building-address">Roberto Simosen, 22</h2>
+          <p>
+            Prédio de cerca de 6 andares na Rua Roberto Simosen, 22, abandonado, com pichações e deterioração visível.
+          </p>
+          <div class="ai-analysis">
+            <h3>Análise da Inteligência Artificial</h3>
+            
+            <p class="capacity-highlight">Capacidade estimada: 240 a 360 pessoas</p>
+            <p>
+              1. <strong>Identificação do imóvel abandonado:</strong><br>
+              Prédio de 6 andares, pichado, sem manutenção.
+            </p>
+            <p>
+              2. <strong>Análise estrutural:</strong><br>
+              Sem sinais aparentes de dano estrutural grave, mas inspeção detalhada necessária.
+            </p>
+            <p>
+              3. <strong>Capacidade estimada:</strong><br>
+              Entre 240 a 360 pessoas, considerando adaptação em dormitórios coletivos (5m²/pessoa).
+            </p>
+            <p>
+              4. <strong>Considerações de segurança:</strong><br>
+              Inspeção completa, prevenção de incêndio, iluminação de emergência, revisões estruturais, elétricas e hidráulicas.
+            </p>
+            <p>
+              5. <strong>Recomendações básicas:</strong><br>
+              Projeto de reforma, adaptação dos espaços, mobiliário, equipamentos, equipe multidisciplinar e recursos contínuos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Vinte e Cinco de Março, 197 -->
+      <div class="building-card">
+        <img
+          src="fotos/vinte-e-cinco-de-marco-197.jpeg"
+          alt="Prédio na Vinte e Cinco de Março, 197"
+          class="building-image"
+        />
+        <div class="building-info">
+          <h2 class="building-address">Vinte e Cinco de Março, 197</h2>
+          <p>
+            Prédio antigo de 3 andares na Rua Vinte e Cinco de Março, 197, abandonado e deteriorado.
+          </p>
+          <div class="ai-analysis">
+            <h3>Análise da Inteligência Artificial</h3>
+            
+            <p class="capacity-highlight">Capacidade estimada: 60 a 80 pessoas</p>
+            <p>
+              1. <strong>Identificação do imóvel abandonado:</strong><br>
+              Prédio de 3 andares, fachada deteriorada.
+            </p>
+            <p>
+              2. <strong>Análise estrutural:</strong><br>
+              Estrutura aparentemente íntegra, mas inspeções internas necessárias.
+            </p>
+            <p>
+              3. <strong>Capacidade estimada:</strong><br>
+              Aproximadamente 60 a 80 pessoas, considerando a necessidade de áreas comuns.
+            </p>
+            <p>
+              4. <strong>Considerações de segurança:</strong><br>
+              Inspeção completa, rotas de fuga, prevenção de incêndio, adequação elétrica/hidráulica.
+            </p>
+            <p>
+              5. <strong>Recomendações básicas:</strong><br>
+              Limpeza, reparos, pintura, criação de dormitórios, banheiros e cozinha. Adequação às normas de segurança e gestão assistencial.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Praça Marechal Deodoro, 171 -->
+      <div class="building-card">
+        <img
+          src="fotos/praca-marechal-deodoro-171.jpeg"
+          alt="Prédio na Praça Marechal Deodoro, 171"
+          class="building-image"
+        />
+        <div class="building-info">
+          <h2 class="building-address">Praça Marechal Deodoro, 171</h2>
+          <p>
+            Prédio de 7 andares localizado na Praça Marechal Deodoro, 171, aparenta abandono e condições precárias.
+          </p>
+          <div class="ai-analysis">
+            <h3>Análise da Inteligência Artificial</h3>
+            
+            <p class="capacity-highlight">Capacidade estimada: 100 a 150 pessoas</p>
+            <p>
+              1. <strong>Identificação do imóvel abandonado:</strong><br>
+              Prédio de 7 andares, fachada deteriorada.
+            </p>
+            <p>
+              2. <strong>Análise estrutural:</strong><br>
+              Estrutura provavelmente íntegra, mas necessita inspeções internas.
+            </p>
+            <p>
+              3. <strong>Capacidade estimada:</strong><br>
+              100 a 150 pessoas, considerando reforma e áreas de uso comum.
+            </p>
+            <p>
+              4. <strong>Considerações de segurança:</strong><br>
+              Inspeção estrutural, adequações elétricas, hidráulicas, prevenção de incêndio, acessibilidade.
+            </p>
+            <p>
+              5. <strong>Recomendações básicas:</strong><br>
+              Projeto de arquitetura, reforma geral, adaptação de espaços e parcerias público-privadas e com entidades assistenciais para gestão.
+            </p>
+          </div>
+        </div>
+      </div>
+        <!-- Repita o card acima para cada prédio -->
+      </section>
+    </main>
+  
+    <script>
+      // Adiciona smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+  
+      // Fade in elements as they scroll into view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      });
+  
+      document.querySelectorAll(".building-card").forEach((card) => {
+        card.style.opacity = 0;
+        card.style.transform = "translateY(20px)";
+        card.style.transition = "all 0.5s ease-out";
+        observer.observe(card);
+      });
+    </script>
+  </body>
+  
+</html>
